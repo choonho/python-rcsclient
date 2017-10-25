@@ -1,0 +1,18 @@
+#!/usr/bin/make -f
+
+#export DH_VERBOSE=1
+
+export DEB_BUILD_HARDENING=1
+
+export PYBUILD_NAME=sipsimple
+
+%:
+	dh $@ --with python2 --buildsystem=pybuild
+
+override_dh_clean:
+	dh_clean
+	rm -rf build dist MANIFEST
+
+override_dh_strip:
+	dh_strip --dbg-package=python-sipsimple-dbg
+

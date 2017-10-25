@@ -1,0 +1,112 @@
+
+SIP SIMPLE client SDK installation on Linux
+-------------------------------------------
+
+Copyright (c) 2008-2015 AG Projects
+http://ag-projects.com
+
+Home page: http://sipsimpleclient.org
+
+This document described the installation procedure on Linux operating
+systems.
+
+
+Step 1. Prerequisites
+---------------------
+
+Both i386 or amd64 architectures are supported. Install the C compiling
+environment, Python 2.7 and the development version for the following
+packages:
+
+ * openssl
+ * ffmpeg
+
+
+Step 2. Install dependencies
+----------------------------
+
+See Dependencies.txt for detailed description of the required libraries and
+their minimum version number.
+
+Use the appropriate package manager for your Linux distribution to install
+the following packages, notice the minimum version numbers.
+
+You can use the easy_install script provided by the python-setuptools
+package to install the packages:
+
+sudo pip install -U cython dnspython lxml python-gnutls python-otr \
+python-application dnspython twisted python-dateutil greenlet
+
+
+Step 3. Install SIP SIMPLE client SDK
+-------------------------------------
+
+The SDK consists of four parts:
+
+ 1. python-eventlib
+ 2. XCAP library
+ 3. MSRP library
+ 4. SIP SIMPLE library
+
+# Eventlib
+if [ -d python-eventlib ]; then
+        cd python-eventlib
+        darcs pull -a
+        sudo python setup.py install
+else
+        darcs get http://devel.ag-projects.com/repositories/python-eventlib
+        cd python-eventlib
+        sudo python setup.py install
+fi
+cd ..
+
+# XCAP library
+if [ -d python-xcaplib ]; then
+        cd python-xcaplib
+        darcs pull -a
+        sudo python setup.py install
+else
+        darcs get http://devel.ag-projects.com/repositories/python-xcaplib
+        cd python-xcaplib
+        sudo python setup.py install
+fi
+cd ..
+
+# MSRP library
+if [ -d python-msrplib ]; then
+        cd python-msrplib
+        darcs pull -a
+        sudo python setup.py install
+else
+        darcs get http://devel.ag-projects.com/repositories/python-msrplib
+        cd python-msrplib
+        sudo python setup.py install
+fi
+cd ..
+
+# SIP SIMPLE
+if [ -d python-sipsimple ]; then
+	cd python-sipsimple
+	darcs pull -a
+else
+	darcs get --set-scripts-executable http://devel.ag-projects.com/repositories/python-sipsimple
+fi
+cd..
+
+cd python-sipsimple
+python setup.py build_ext --pjsip-clean-compile
+sudo python setup.py install
+
+Additional, you can install the command line interface scripts that can be
+used to test the SDK.
+
+if [ -d sipclients ]; then
+	cd sipclients
+	darcs pull -a
+else
+	darcs get --set-scripts-executable http://devel.ag-projects.com/repositories/sipclients
+fi
+cd..
+
+sudo python setup.py install
+

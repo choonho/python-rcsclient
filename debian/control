@@ -1,0 +1,61 @@
+Source: python-sipsimple
+Section: python
+Priority: optional
+Maintainer: Dan Pascu <dan@ag-projects.com>
+Uploaders: Adrian Georgescu <ag@ag-projects.com>
+Build-Depends: debhelper (>= 9),
+               dh-python,
+               python-all-dev (>= 2.7),
+               python-all-dbg (>= 2.7),
+               cython-dbg (>= 0.19),
+               libasound2-dev,
+               libssl1.0-dev | libssl-dev (<< 1.1.0),
+               libv4l-dev,
+               libavcodec-dev (>= 7:2.7),
+               libavformat-dev (>= 7:2.7),
+               libavutil-dev (>= 7:2.7),
+               libswscale-dev (>= 7:2.7),
+               libx264-dev,
+               libvpx-dev,
+               libsqlite3-dev,
+               pkg-config,
+               uuid-dev
+Standards-Version: 3.9.8
+Homepage: http://sipsimpleclient.org
+
+Package: python-sipsimple
+Architecture: any
+Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends},
+         python-application (>= 2.0.0),
+         python-dateutil,
+         python-dnspython (>= 1.9),
+         python-eventlib,
+         python-gnutls,
+         python-lxml,
+         python-msrplib (>= 0.19.0),
+         python-otr (>= 1.2.0),
+         python-twisted-core (>= 8.1.0),
+         python-xcaplib (>= 1.0.17)
+Suggests: libavahi-compat-libdnssd1
+Provides: ${python:Provides}
+Description: Python SDK for development of SIP end-points
+ SIP SIMPLE client SDK is a Software Development Kit for easy development of
+ SIP end-points that support rich media like Audio, Video, Instant Messaging,
+ File Transfers, Desktop Sharing and Presence. Other media types can be added
+ by using an extensible high-level API.
+
+Package: python-sipsimple-dbg
+Architecture: any
+Priority: extra
+Section: debug
+Depends: python-sipsimple (= ${binary:Version}), ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Provides: ${python:Provides}
+Description: Python SDK for development of SIP end-points (debug extension)
+ SIP SIMPLE client SDK is a Software Development Kit for easy development of
+ SIP end-points that support rich media like Audio, Video, Instant Messaging,
+ File Transfers, Desktop Sharing and Presence. Other media types can be added
+ by using an extensible high-level API.
+ .
+ This package contains the extensions built for the Python debug interpreter
+ and the debugging symbols for python-sipsimple.
+
